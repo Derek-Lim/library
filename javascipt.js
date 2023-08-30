@@ -76,6 +76,8 @@ function createForm() {
     newBookForm.append(submitBookBtn);
     //submit button will add book to myLibrary
     submitBookBtn.addEventListener('click', () => {
+        //prevent page refresh
+        preventRefresh();
         //create new book with data provided
         let book = new Book(
             document.getElementById('title').value,
@@ -95,5 +97,13 @@ function createForm() {
         readLabel.remove();
         readInput.remove();
         submitBookBtn.remove();
+    })
+}
+
+//Prevent form from refreshing page when submit button is clicked
+function preventRefresh() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', event => {
+        event.preventDefault();
     })
 }
