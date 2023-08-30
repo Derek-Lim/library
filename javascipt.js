@@ -20,6 +20,7 @@ newBookBtn.addEventListener('click', () => {
 
 function createForm() {
     const newBookForm = document.querySelector('form');
+
     //create label for title
     const titleLabel = document.createElement('label');
     titleLabel.textContent = 'Title: ';
@@ -31,6 +32,7 @@ function createForm() {
     titleInput.name = 'title';
     titleInput.id = 'title';
     newBookForm.append(titleInput);
+
     //create label for author
     const authorLabel = document.createElement('label');
     authorLabel.textContent = 'Author: ';
@@ -42,6 +44,7 @@ function createForm() {
     authorInput.name = 'author';
     authorInput.id = 'author';
     newBookForm.append(authorInput);
+
     //create label for page number
     const pagesLabel = document.createElement('label');
     pagesLabel.textContent = 'Pages: ';
@@ -53,6 +56,7 @@ function createForm() {
     pagesInput.name = 'pages';
     pagesInput.id = 'pages';
     newBookForm.append(pagesInput);
+
     //create label for "read" status
     const readLabel = document.createElement('label');
     readLabel.textContent = 'Read: ';
@@ -64,6 +68,7 @@ function createForm() {
     readInput.name = 'read';
     readInput.id = 'read';
     newBookForm.append(readInput);
+
     //create submit button
     const submitBookBtn = document.createElement('button');
     submitBookBtn.type = 'submit';
@@ -80,5 +85,15 @@ function createForm() {
         )
         //then add the book to myLibrary
         myLibrary.push(book);
+        //remove form elements
+        titleLabel.remove();
+        titleInput.remove();
+        authorLabel.remove();
+        authorInput.remove();
+        pagesLabel.remove();
+        pagesInput.remove();
+        readLabel.remove();
+        readInput.remove();
+        submitBookBtn.remove();
     })
 }
