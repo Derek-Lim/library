@@ -18,6 +18,12 @@ newBookBtn.addEventListener('click', () => {
     createForm();
 })
 
+//Display books
+const showBookBtn = document.querySelector('.show-book-btn');
+showBookBtn.addEventListener('click', () => {
+    displayBooks();
+})
+
 function createForm() {
     const newBookForm = document.querySelector('form');
 
@@ -106,4 +112,38 @@ function preventRefresh() {
     form.addEventListener('submit', event => {
         event.preventDefault();
     })
+}
+
+function displayBooks() {
+    //clear previous cards
+    const previousCards = document.querySelectorAll('.card');
+    previousCards.forEach((card) => {
+        card.remove();
+    })
+
+    //set variable for container
+    const container = document.querySelector('.container');
+    //create a card for every book in myLibrary
+    myLibrary.forEach((book) => {
+        //create card and put it in container
+        const card = document.createElement('div');
+        card.className = 'card';
+        container.append(card);
+        //put title info in card
+        const bookTitle = document.createElement('div');
+        bookTitle.textContent = `Title: ${book.title}`;
+        card.append(bookTitle);
+        //put author info in card
+        const bookAuthor = document.createElement('div');
+        bookAuthor.textContent = `Author: ${book.author}`;
+        card.append(bookAuthor);
+        //put pages info in card
+        const bookPages = document.createElement('div');
+        bookPages.textContent = `Pages: ${book.pages}`;
+        card.append(bookPages);
+        //put read info in card
+        const bookRead = document.createElement('div');
+        bookRead.textContent = `Read: ${book.read}`;
+        card.append(bookRead);
+    });
 }
