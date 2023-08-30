@@ -124,26 +124,40 @@ function displayBooks() {
     //set variable for container
     const container = document.querySelector('.container');
     //create a card for every book in myLibrary
-    myLibrary.forEach((book) => {
+    for (let i = 0; i < myLibrary.length; i++) {
+        let x = myLibrary[i];
         //create card and put it in container
         const card = document.createElement('div');
         card.className = 'card';
+        card.id = i;
         container.append(card);
         //put title info in card
         const bookTitle = document.createElement('div');
-        bookTitle.textContent = `Title: ${book.title}`;
+        bookTitle.textContent = `Title: ${x.title}`;
         card.append(bookTitle);
         //put author info in card
         const bookAuthor = document.createElement('div');
-        bookAuthor.textContent = `Author: ${book.author}`;
+        bookAuthor.textContent = `Author: ${x.author}`;
         card.append(bookAuthor);
         //put pages info in card
         const bookPages = document.createElement('div');
-        bookPages.textContent = `Pages: ${book.pages}`;
+        bookPages.textContent = `Pages: ${x.pages}`;
         card.append(bookPages);
         //put read info in card
         const bookRead = document.createElement('div');
-        bookRead.textContent = `Read: ${book.read}`;
+        bookRead.textContent = `Read: ${x.read}`;
         card.append(bookRead);
-    });
+        //add remove button
+        const rmButton = document.createElement('button');
+        rmButton.textContent = 'Remove';
+        rmButton.dataset.cardId = i;
+        card.append(rmButton);
+        //make rmButton remove book when clicked
+        rmButton.addEventListener('click', () => {
+            const cardId = rmButton.dataset.cardId
+            const card = document.getElementById(cardId)
+            card.remove(); //remove card
+            myLibrary.splice(i, 1); //remove book from myLibrary
+        })
+    }
 }
