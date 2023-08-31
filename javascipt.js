@@ -146,7 +146,27 @@ function displayBooks() {
         //put read info in card
         const bookRead = document.createElement('div');
         bookRead.textContent = `Read: ${x.read}`;
+        bookRead.id = -i - 1;
         card.append(bookRead);
+        //add button to change "read" status
+        const readBtn  = document.createElement('button');
+        readBtn.textContent = 'read/unread';
+        readBtn.dataset.readId = -i -1;
+        card.append(readBtn);
+        //make readBtn toggle "read" status
+        readBtn.addEventListener('click', () => {
+            const readId = readBtn.dataset.readId
+            const read = document.getElementById(readId)
+            if (read.textContent === 'Read: read') {
+                read.textContent = 'Read: not read yet';
+                myLibrary[i].read = 'not read yet';
+            } else if (read.textContent === 'Read: not read yet') {
+                read.textContent = 'Read: read';
+                myLibrary[i].read = 'read';
+            } else {
+                alert('readBtn error');
+            }
+        })
         //add remove button
         const rmButton = document.createElement('button');
         rmButton.textContent = 'Remove';
