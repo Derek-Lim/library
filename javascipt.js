@@ -25,7 +25,9 @@ showBookBtn.addEventListener('click', () => {
 })
 
 function createForm() {
-    const newBookForm = document.querySelector('form');
+    const newBookForm = document.createElement('form');
+    const formContainer = document.querySelector('.form-container');
+    formContainer.append(newBookForm);
 
     //create label for title
     const titleLabel = document.createElement('label');
@@ -109,14 +111,7 @@ function createForm() {
             //then add the book to myLibrary
             myLibrary.push(book);
             //remove form elements
-            titleLabel.remove();
-            titleInput.remove();
-            authorLabel.remove();
-            authorInput.remove();
-            pagesLabel.remove();
-            pagesInput.remove();
-            readDropdown.remove();
-            submitBookBtn.remove();
+                newBookForm.remove();
         }
     })
 }
