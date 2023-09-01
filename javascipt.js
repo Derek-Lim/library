@@ -65,8 +65,14 @@ function createForm() {
     pagesInput.id = 'pages';
     newBookForm.append(pagesInput);
 
+    //create label for "read" status
+    const readLabel = document.createElement('label');
+    readLabel.textContent = 'Read: ';
+    readLabel.setAttribute('for', 'read');
+    newBookForm.append(readLabel);
     //create dropdown for "read" status
     const readDropdown = document.createElement('select');
+    readDropdown.id = 'read';
     newBookForm.append(readDropdown);
     //create "read" option for readDropdown
     const readOption = document.createElement('option');

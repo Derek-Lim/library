@@ -1,6 +1,47 @@
-div.container {
+* {
+    background-color: lightcyan;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    border: 2px solid black;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 0 25px;
+}
+
+header > h1 {
+    background-color: white;
+    font-size: 50px;
+}
+
+div.form-container {
     display: grid;
     grid-template-columns: repeat(5, 200px);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border: 2px solid black;
+    padding: 20px;
+    width: fit-content;
+    gap: 10px;
+    background-color: bisque;
+}
+
+form > label {
+    background-color: bisque;
+}
+
+div.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 20px;
+    gap: 20px;
 }
 
 div.card {
@@ -9,5 +50,17 @@ div.card {
     width: max-content;
     border: 2px solid black;
     border-radius: 15px;
-    padding: 10px;
+    padding: 20px;
+    background-color: bisque;
+    gap: 10px;
+}
+
+.card > div {
+    background-color: bisque;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }
