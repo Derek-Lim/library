@@ -62,19 +62,19 @@ function createForm() {
     pagesInput.name = 'pages';
     pagesInput.id = 'pages';
     newBookForm.append(pagesInput);
-
-    //create label for "read" status
-    const readLabel = document.createElement('label');
-    readLabel.textContent = 'Read: ';
-    readLabel.setAttribute('for', 'read');
-    newBookForm.append(readLabel);
-    //create input for "read" status
-    const readInput = document.createElement('input');
-    readInput.type = 'text';
-    readInput.name = 'read';
-    readInput.id = 'read';
-    newBookForm.append(readInput);
-
+    //create dropdown for "read" status
+    const readDropdown = document.createElement('select');
+    newBookForm.append(readDropdown);
+    //create "read" option for readDropdown
+    const readOption = document.createElement('option');
+    readOption.value = 'read';
+    readOption.textContent = 'read';
+    readDropdown.append(readOption);
+    //create "not read yet" option for readDropdown
+    const readOption2 = document.createElement('option');
+    readOption2.value = 'not read yet'
+    readOption2.textContent = 'not read yet';
+    readDropdown.append(readOption2);
     //create submit button
     const submitBookBtn = document.createElement('button');
     submitBookBtn.type = 'submit';
@@ -89,7 +89,7 @@ function createForm() {
             document.getElementById('title').value,
             document.getElementById('author').value,
             document.getElementById('pages').value,
-            document.getElementById('read').value
+            document.querySelector('select').value
         )
         //then add the book to myLibrary
         myLibrary.push(book);
@@ -100,8 +100,7 @@ function createForm() {
         authorInput.remove();
         pagesLabel.remove();
         pagesInput.remove();
-        readLabel.remove();
-        readInput.remove();
+        readDropdown.remove();
         submitBookBtn.remove();
     })
 }
