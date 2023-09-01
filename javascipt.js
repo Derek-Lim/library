@@ -62,6 +62,7 @@ function createForm() {
     pagesInput.name = 'pages';
     pagesInput.id = 'pages';
     newBookForm.append(pagesInput);
+
     //create dropdown for "read" status
     const readDropdown = document.createElement('select');
     newBookForm.append(readDropdown);
@@ -75,6 +76,7 @@ function createForm() {
     readOption2.value = 'not read yet'
     readOption2.textContent = 'not read yet';
     readDropdown.append(readOption2);
+
     //create submit button
     const submitBookBtn = document.createElement('button');
     submitBookBtn.type = 'submit';
@@ -84,24 +86,38 @@ function createForm() {
     submitBookBtn.addEventListener('click', () => {
         //prevent page refresh
         preventRefresh();
-        //create new book with data provided
-        let book = new Book(
-            document.getElementById('title').value,
-            document.getElementById('author').value,
-            document.getElementById('pages').value,
-            document.querySelector('select').value
-        )
-        //then add the book to myLibrary
-        myLibrary.push(book);
-        //remove form elements
-        titleLabel.remove();
-        titleInput.remove();
-        authorLabel.remove();
-        authorInput.remove();
-        pagesLabel.remove();
-        pagesInput.remove();
-        readDropdown.remove();
-        submitBookBtn.remove();
+        //make sure user inputs book title before submitting
+        if (document.getElementById('title').value === '') {
+            alert('Please input book title.');
+        //make sure user inputs author name before submitting
+        } else if (document.getElementById('author').value === '') {
+            alert('Please input author name.')
+        //make sure user inputs page number before submitting
+        } else if (document.getElementById('pages').value === '') {
+            alert('Please input page number.')
+        //make sure user inputs a valid page number before submitting
+        } else if (document.getElementById('pages').value < 1) {
+            alert('Please input a valid page number');
+        } else {
+            //create new book with data provided
+            let book = new Book(
+                document.getElementById('title').value,
+                document.getElementById('author').value,
+                document.getElementById('pages').value,
+                document.querySelector('select').value
+            )
+            //then add the book to myLibrary
+            myLibrary.push(book);
+            //remove form elements
+            titleLabel.remove();
+            titleInput.remove();
+            authorLabel.remove();
+            authorInput.remove();
+            pagesLabel.remove();
+            pagesInput.remove();
+            readDropdown.remove();
+            submitBookBtn.remove();
+        }
     })
 }
 
