@@ -2,14 +2,16 @@
 const myLibrary = [];
 
 //Constructor to create instances of book
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    }
 }
 
 //Bring up form to add new books
