@@ -18,7 +18,10 @@ class Book {
 // Bring up form to add new books
 const newBookBtn = document.querySelector('.new-book-btn')
 newBookBtn.addEventListener('click', () => {
-  createForm()
+  const form = document.querySelector('form')
+  if (!form) {
+    createForm()
+  }
 })
 
 // Display books
@@ -154,7 +157,9 @@ function createForm () {
     preventRefresh()
     // make sure user inputs book title before submitting
     if (document.getElementById('title').value !== '' &&
+        document.getElementById('title').value.length > 2 &&
         document.getElementById('author').value !== '' &&
+        document.getElementById('author').value.length > 2 &&
         document.getElementById('pages').value !== '' &&
         document.getElementById('pages').value >= 1) {
       // create new book with data provided
