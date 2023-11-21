@@ -43,6 +43,7 @@ function createForm () {
   titleInput.name = 'title'
   titleInput.id = 'title'
   titleInput.required = true
+  titleInput.minLength = '3'
   newBookForm.append(titleInput)
 
   // create label for author
@@ -56,6 +57,7 @@ function createForm () {
   authorInput.name = 'author'
   authorInput.id = 'author'
   authorInput.required = true
+  authorInput.minLength = '3'
   newBookForm.append(authorInput)
 
   // create label for page number
@@ -97,6 +99,55 @@ function createForm () {
   submitBookBtn.type = 'submit'
   submitBookBtn.textContent = 'Submit'
   newBookForm.append(submitBookBtn)
+
+  // set custom error messages
+  titleInput.addEventListener('input', (event) => {
+    showTitleError()
+  })
+  authorInput.addEventListener('input', (event) => {
+    showAuthorError()
+  })
+  pagesInput.addEventListener('input', (event) => {
+    showPagesError()
+  })
+  submitBookBtn.addEventListener('click', (event) => {
+    showTitleError()
+    showAuthorError()
+    showPagesError()
+  })
+
+  function showTitleError () {
+    if (titleInput.validity.valueMissing) {
+      titleInput.setCustomValidity('Please input book title.')
+    } else if (titleInput.validity.tooShort) {
+      titleInput.setCustomValidity(`Title must be at least
+    ${titleInput.minLength} characters; current count: ${titleInput.value.length}`)
+    } else {
+      titleInput.setCustomValidity('')
+    }
+  }
+
+  function showAuthorError () {
+    if (authorInput.validity.valueMissing) {
+      authorInput.setCustomValidity('Please input author name.')
+    } else if (authorInput.validity.tooShort) {
+      authorInput.setCustomValidity(`Name must be at least
+      ${authorInput.minLength} characters; current count: ${authorInput.value.length}`)
+    } else {
+      authorInput.setCustomValidity('')
+    }
+  }
+
+  function showPagesError () {
+    if (pagesInput.validity.valueMissing) {
+      pagesInput.setCustomValidity('Please input total number of pages.')
+    } else if (pagesInput.validity.rangeUnderflow) {
+      pagesInput.setCustomValidity('bruh...')
+    } else {
+      pagesInput.setCustomValidity('')
+    }
+  }
+
   // submit button will add book to myLibrary
   submitBookBtn.addEventListener('click', () => {
     // prevent page refresh

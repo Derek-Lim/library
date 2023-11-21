@@ -36,6 +36,10 @@ form > label {
     background-color: bisque;
 }
 
+form > input:invalid {
+    border: 1px solid red;
+}
+
 div.container {
     display: flex;
     flex-wrap: wrap;
