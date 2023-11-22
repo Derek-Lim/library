@@ -236,6 +236,14 @@ function displayBooks () {
     card.remove()
   })
 
+  if (myLibrary.length === 0) {
+    const container = document.querySelector('.container')
+    const message = document.createElement('div')
+    message.textContent = 'no books to show'
+    message.className = 'card'
+    container.append(message)
+  }
+
   // set variable for container
   const container = document.querySelector('.container')
   // create a card for every book in myLibrary
