@@ -43,6 +43,7 @@ hideBookBtn.addEventListener('click', () => {
 })
 
 function createForm () {
+  const showBookBtn = document.querySelector('.show-book-btn')
   const newBookForm = document.createElement('form')
   newBookForm.setAttribute('novalidate', true)
   const formContainer = document.querySelector('.form-container')
@@ -220,6 +221,10 @@ function createForm () {
       myLibrary.push(book)
       // remove form elements
       newBookForm.remove()
+      // if books are shown, update book cards
+      if (showBookBtn.style.display === 'none') {
+        displayBooks()
+      }
     }
   })
 
