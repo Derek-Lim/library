@@ -46,6 +46,10 @@ form > .error.active {
     margin-top: -10px;
 }
 
+.hide-book-btn {
+    display: none;
+}
+
 div.container {
     display: flex;
     flex-wrap: wrap;

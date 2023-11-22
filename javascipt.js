@@ -24,10 +24,22 @@ newBookBtn.addEventListener('click', () => {
   }
 })
 
-// Display books
 const showBookBtn = document.querySelector('.show-book-btn')
+const hideBookBtn = document.querySelector('.hide-book-btn')
+
 showBookBtn.addEventListener('click', () => {
+  // show books
   displayBooks()
+  // switch buttons
+  showBookBtn.style.display = 'none'
+  hideBookBtn.style.display = 'inline-block'
+})
+hideBookBtn.addEventListener('click', () => {
+  // hide books
+  removeBooks()
+  // switch buttons
+  hideBookBtn.style.display = 'none'
+  showBookBtn.style.display = 'inline-block'
 })
 
 function createForm () {
@@ -231,10 +243,7 @@ function preventRefresh () {
 
 function displayBooks () {
   // clear previous cards
-  const previousCards = document.querySelectorAll('.card')
-  previousCards.forEach((card) => {
-    card.remove()
-  })
+  removeBooks()
 
   if (myLibrary.length === 0) {
     const container = document.querySelector('.container')
@@ -303,4 +312,12 @@ function displayBooks () {
       myLibrary.splice(i, 1) // remove book from myLibrary
     })
   }
+}
+
+function removeBooks () {
+  // clear cards
+  const previousCards = document.querySelectorAll('.card')
+  previousCards.forEach((card) => {
+    card.remove()
+  })
 }
