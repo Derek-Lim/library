@@ -210,6 +210,15 @@ function createForm () {
       newBookForm.remove()
     }
   })
+
+  // create cancel button
+  const cancelBtn = document.createElement('button')
+  cancelBtn.type = 'button'
+  cancelBtn.textContent = 'Cancel'
+  cancelBtn.addEventListener('click', () => {
+    newBookForm.remove()
+  })
+  newBookForm.append(cancelBtn)
 }
 
 // Prevent form from refreshing page when submit button is clicked
