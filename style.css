@@ -40,6 +40,12 @@ form > input:invalid {
     border: 1px solid red;
 }
 
+form > .error.active {
+    color: red;
+    background-color: bisque;
+    margin-top: -10px;
+}
+
 div.container {
     display: flex;
     flex-wrap: wrap;

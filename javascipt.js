@@ -32,6 +32,7 @@ showBookBtn.addEventListener('click', () => {
 
 function createForm () {
   const newBookForm = document.createElement('form')
+  newBookForm.setAttribute('novalidate', true)
   const formContainer = document.querySelector('.form-container')
   formContainer.append(newBookForm)
 
@@ -48,6 +49,10 @@ function createForm () {
   titleInput.required = true
   titleInput.minLength = '3'
   newBookForm.append(titleInput)
+  // create error message for title
+  const titleError = document.createElement('span')
+  titleError.className = 'error'
+  newBookForm.append(titleError)
 
   // create label for author
   const authorLabel = document.createElement('label')
@@ -62,6 +67,10 @@ function createForm () {
   authorInput.required = true
   authorInput.minLength = '3'
   newBookForm.append(authorInput)
+  // create error message for author
+  const authorError = document.createElement('span')
+  authorError.className = 'error'
+  newBookForm.append(authorError)
 
   // create label for page number
   const pagesLabel = document.createElement('label')
@@ -76,6 +85,10 @@ function createForm () {
   pagesInput.required = true
   pagesInput.min = '1'
   newBookForm.append(pagesInput)
+  // create error message for pages
+  const pagesError = document.createElement('span')
+  pagesError.className = 'error'
+  newBookForm.append(pagesError)
 
   // create label for "read" status
   const readLabel = document.createElement('label')
@@ -105,50 +118,72 @@ function createForm () {
 
   // set custom error messages
   titleInput.addEventListener('input', (event) => {
-    showTitleError()
+    if (titleInput.validity.valid) {
+      titleError.textContent = ''
+      titleError.className = 'error'
+    } else {
+      showTitleError()
+    }
   })
   authorInput.addEventListener('input', (event) => {
-    showAuthorError()
+    if (authorInput.validity.valid) {
+      authorError.textContent = ''
+      authorError.className = 'error'
+    } else {
+      showAuthorError()
+    }
   })
   pagesInput.addEventListener('input', (event) => {
-    showPagesError()
+    if (pagesInput.validity.valid) {
+      pagesError.textContent = ''
+      pagesError.className = 'error'
+    } else {
+      showPagesError()
+    }
   })
   submitBookBtn.addEventListener('click', (event) => {
-    showTitleError()
-    showAuthorError()
-    showPagesError()
+    if (!titleInput.validity.valid) {
+      showTitleError()
+      event.preventDefault()
+    } else if (!authorInput.validity.valid) {
+      showAuthorError()
+      event.preventDefault()
+    } else if (!pagesInput.validity.valid) {
+      showPagesError()
+      event.preventDefault()
+    }
   })
 
   function showTitleError () {
     if (titleInput.validity.valueMissing) {
-      titleInput.setCustomValidity('Please input book title.')
+      titleError.textContent = 'Please input book title'
     } else if (titleInput.validity.tooShort) {
-      titleInput.setCustomValidity(`Title must be at least
-    ${titleInput.minLength} characters; current count: ${titleInput.value.length}`)
-    } else {
-      titleInput.setCustomValidity('')
+      titleError.textContent = `Title must be at least
+      ${titleInput.minLength} characters; current count: ${titleInput.value.length}`
     }
+
+    titleError.className = 'error active'
   }
 
   function showAuthorError () {
     if (authorInput.validity.valueMissing) {
-      authorInput.setCustomValidity('Please input author name.')
+      authorError.textContent = 'Please input author name.'
     } else if (authorInput.validity.tooShort) {
-      authorInput.setCustomValidity(`Name must be at least
-      ${authorInput.minLength} characters; current count: ${authorInput.value.length}`)
-    } else {
-      authorInput.setCustomValidity('')
+      authorError.textContent = `Name must be at least
+      ${authorInput.minLength} characters; current count: ${authorInput.value.length}`
     }
+
+    authorError.className = 'error active'
   }
 
   function showPagesError () {
     if (pagesInput.validity.valueMissing) {
-      pagesInput.setCustomValidity('Please input total number of pages.')
+      pagesError.textContent = 'Please input total number of pages.'
     } else if (pagesInput.validity.rangeUnderflow) {
-      pagesInput.setCustomValidity('bruh...')
-    } else {
-      pagesInput.setCustomValidity('')
+      pagesError.textContent = 'bruh...'
     }
+
+    pagesError.className = 'error active'
   }
 
   // submit button will add book to myLibrary
